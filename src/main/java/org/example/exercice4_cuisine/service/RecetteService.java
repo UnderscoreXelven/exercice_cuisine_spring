@@ -29,6 +29,10 @@ public class RecetteService implements BaseService<Recette>{
         recettes.remove(id);
     }
 
+    public void update(Recette recette) {
+        recettes.put(recette.getId(), recette);
+    }
+
     public List<Recette> getAll() {
         return new ArrayList<>(recettes.values());
     }

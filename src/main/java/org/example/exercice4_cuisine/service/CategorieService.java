@@ -36,6 +36,9 @@ public class CategorieService implements BaseService<Categorie>{
         categorie.setId(++idCategorie);
         categories.put(categorie.getId(), categorie);
     }
+    public void update(Categorie categorie) {
+        categories.put(categorie.getId(), categorie);
+    }
 
     @Override
     public List<Categorie> getAll() {

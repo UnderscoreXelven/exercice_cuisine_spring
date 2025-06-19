@@ -9,23 +9,46 @@
     <div th:replace="~{home :: header}"></div>
     <div class="background-opacity">
         <h1>Ajouter une recette</h1>
-        <form th:action="@{/recette/add}" method="post" th:object="${recette}">
-            <label for="nom">Nom de la recette</label>
-            <input type="text" name="nom" id="nom" placeholder="Nom de la recette" th:field="*{nom}">
+        <form th:if="${recette.id} == null" th:action="@{/recette/add}" method="post">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" th:value="${recette.nom}" required />
 
-            <label for="instructions">Instruction de la recette</label>
-            <textarea name="instructions" id="instructions" placeholder="Décrivez la recette..." th:field="*{instructions}"></textarea>
-
-            <label for="ingredients">Ingredients de la recette</label>
-            <textarea name="ingredients" id="ingredients" placeholder="Marquez les ingrédients..." th:field="*{ingredients}"></textarea>
-
-            <label for="categorie">Catégorie</label>
-            <select name="categorieId" id="categorie">
-                <option th:each="categorie : ${categories}" th:value="${categorie.getId()}" th:text="${categorie.getNom()}"></option>
+            <label for="categorie">Catégorie :</label>
+            <select id="categorie" name="categorieId" required>
+                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.nom}"
+                        th:selected="${recette.categorie != null} ? ${cat.id} == ${recette.categorie.id} : false"></option>
             </select>
 
-            <input type="submit" value="Ajouter">
+            <label for="ingredients">Ingrédients :</label>
+            <textarea id="ingredients" name="ingredients" required th:text="${recette.ingredients}"></textarea>
+
+            <label for="instructions">Instructions :</label>
+            <textarea id="instructions" name="instructions" required th:text="${recette.instructions}"></textarea>
+
+            <button type="submit" class="add-recette-btn">Ajouter</button>
         </form>
+
+        <form th:unless="${recette.id} == null" th:action="@{/recette/update}" method="post">
+            <input type="hidden" name="id" th:value="${recette.id}" />
+
+            <label for="nom2">Nom :</label>
+            <input type="text" id="nom2" name="nom" th:value="${recette.nom}" required />
+
+            <label for="categorie2">Catégorie :</label>
+            <select id="categorie2" name="categorieId" required>
+                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.nom}"
+                        th:selected="${recette.categorie != null} ? ${cat.id} == ${recette.categorie.id} : false"></option>
+            </select>
+
+            <label for="ingredients2">Ingrédients :</label>
+            <textarea id="ingredients2" name="ingredients" required th:text="${recette.ingredients}"></textarea>
+
+            <label for="instructions2">Instructions :</label>
+            <textarea id="instructions2" name="instructions" required th:text="${recette.instructions}"></textarea>
+
+            <button type="submit" class="add-recette-btn">Modifier</button>
+        </form>
+
     </div>
 </body>
 </html>

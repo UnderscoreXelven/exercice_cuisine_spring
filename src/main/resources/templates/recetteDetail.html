@@ -17,9 +17,9 @@
             <h4>Instructions :</h4>
             <p th:text="${recette.getInstructions()}"></p>
             <div class="btn-recette">
-                <a>Modifier</a>
+                <a th:href="@{/recette/edit/{id}(id=${recette.id})}">Modifier</a>
                 <a th:href="@{/recette/list}">Retourner à la liste des recettes</a>
-                <a>Supprimer</a>
+                <a th:href="@{/recette/delete/{id}(id=${recette.id})}">Supprimer</a>
             </div>
         </div>
     </div>

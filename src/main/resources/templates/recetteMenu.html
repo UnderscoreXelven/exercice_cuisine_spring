@@ -21,7 +21,10 @@
         <tr th:each="recette : ${recettes}">
           <td th:text="${recette.getNom()}"></td>
           <td th:text="${recette.getCategorie().getNom()}"></td>
-          <td><a th:href="@{/recette/{id}(id=${recette.getId})}">Détails</a></td>
+          <td>
+            <a th:href="@{/recette/{id}(id=${recette.getId()})}" class="detail-btn">Détails</a>
+          </td>
+
       </tbody>
     </table>
     <a th:href="@{/recette/add}" class="add-recette-btn">Ajouter une recette</a>

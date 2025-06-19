@@ -47,4 +47,26 @@ public class RecetteControler {
         model.addAttribute("recette", recetteService.get(id));
         return "recetteDetail";
     }
+
+    @GetMapping("/recette/edit/{id}")
+    public String recetteEdit(@PathVariable("id") int id, Model model) {
+        Recette recette = recetteService.get(id);
+        model.addAttribute("recette", recette);
+        model.addAttribute("categories", categorieService.getAll());
+        return "recetteAdd";
+    }
+
+    @PostMapping("/recette/update")
+    public String recetteUpdate(@ModelAttribute("recette") Recette recette, @RequestParam("categorieId") int categorieId) {
+        recette.setCategorie(categorieService.get(categorieId));
+        recetteService.update(recette);
+        return "redirect:/recette/list";
+    }
+
+    @GetMapping("/recette/delete/{id}")
+    public String delete(@PathVariable int id) {
+        recetteService.delete(id);
+        return "redirect:/recette/list";
+    }
+
 }
