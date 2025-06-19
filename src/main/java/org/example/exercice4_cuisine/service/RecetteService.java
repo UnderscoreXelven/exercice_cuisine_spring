@@ -22,7 +22,8 @@ public class RecetteService implements BaseService<Recette>{
     }
 
     public void add(Recette recette) {
-        recettes.put(++idRecette, recette);
+        recette.setId(++idRecette);
+        recettes.put(idRecette, recette);
     }
 
     public void delete(int id) {

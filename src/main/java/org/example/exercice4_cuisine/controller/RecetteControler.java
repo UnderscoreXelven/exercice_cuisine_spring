@@ -69,4 +69,12 @@ public class RecetteControler {
         return "redirect:/recette/list";
     }
 
+
+
+    @GetMapping("/categorie/list")
+    public String categorieList(Model model) {
+        model.addAttribute("categories", categorieService.getAll());
+        return "categorieMenu";
+    }
+
 }
