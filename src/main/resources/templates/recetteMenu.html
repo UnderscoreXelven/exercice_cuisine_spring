@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recettes</title>
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+  <div th:replace="~{home :: header}"></div>
+  <div class="background-opacity">
+    <h1>Liste des recettes</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom de la recette</th>
+          <th>Catégorie</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="recette : ${recettes}">
+          <td th:text="${recette.getNom()}"></td>
+          <td th:text="${recette.getCategorie().getNom()}"></td>
+          <td><a th:href="@{/recette/{id}(id=${recette.getId})}">Détails</a></td>
+      </tbody>
+    </table>
+    <a th:href="@{/recette/add}" class="add-recette-btn">Ajouter une recette</a>
+  </div>
+</body>
+</html>

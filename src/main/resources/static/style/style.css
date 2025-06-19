@@ -1,0 +1,296 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+    height: 100%; /* pour que body prenne toute la hauteur */
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url("../img/background.jpg");
+}
+
+.background-opacity {
+    background-color: rgba(255, 255, 255, 0.2);
+    flex-grow: 1;       /* occupe tout l'espace restant sous le header */
+    display: flex;      /* pour pouvoir centrer sa grille */
+    flex-direction: column; /* pour aligner verticalement */
+}
+
+
+header {
+    display: flex;
+    background-color: #f8f8f8;
+    flex-shrink: 0; /* header ne rétrécit pas */
+}
+
+header a {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    height: 100%;
+}
+
+header a:hover {
+    background-color: #e3e3e3;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    margin-top: 50px;
+}
+
+.grid-container {
+    flex-grow: 1;          /* occupe l'espace restant dans background-opacity */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.home-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.grid-item {
+    width: 200px;
+    height: 200px;
+    background-color: #f8f8f8;
+    text-align: center;
+    border-radius: 20px;
+
+    display: flex;            /* active flex */
+    flex-direction: column;   /* empile en colonne */
+    justify-content: center;  /* centre verticalement */
+    align-items: center;      /* centre horizontalement */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    -webkit-box-shadow: 2px 2px 15px 5px rgba(0,0,0,0.6);
+    box-shadow: 2px 2px 15px 5px rgba(0,0,0,0.6);
+}
+
+.grid-item:hover{
+    background-color: #eaeaea;
+    transform: scale(1.1);
+}
+
+.grid-item img {
+    width: 64px;
+    height: 64px;
+}
+
+.grid-item a:visited, .grid-item a {
+    color: black;
+    text-decoration: none;
+}
+
+table {
+    width: 400px;
+    background-color: #f8f8f8;
+    border-collapse: collapse;
+    margin: 30px auto 0;
+    border-radius: 10px;
+    min-height: 300px;    /* hauteur minimale fixe */
+    height: auto;         /* hauteur auto pour respecter min-height */
+    display: block;       /* nécessaire pour gérer la hauteur avec scroll */
+    overflow-y: auto;     /* scroll vertical si contenu trop grand */
+    -webkit-box-shadow: 2px 2px 15px 5px rgba(0,0,0,0.6);
+    box-shadow: 2px 2px 15px 5px rgba(0,0,0,0.6);
+}
+
+thead, tbody {
+    display: block;       /* permet de scroller tbody séparément */
+    width: 100%;
+}
+
+thead tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;  /* largeur fixe des colonnes */
+    font-weight: bold;
+}
+
+tbody {
+    max-height: 270px;    /* hauteur max de tbody = min-height du tableau - hauteur thead */
+    overflow-y: auto;     /* scroll si dépassement */
+}
+
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    height: 30px;         /* hauteur fixe des lignes */
+    line-height: 30px;    /* centrer verticalement le texte */
+    vertical-align: middle;
+}
+
+th, td {
+    padding: 6px 12px;
+    text-align: left;
+    border: none;
+    white-space: nowrap;
+}
+
+tr th:nth-child(2), tr td:nth-child(2) {
+    text-align: center;
+}
+
+.add-recette-btn{
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+    width: 300px;
+    text-align: center;
+    margin: 30px auto;
+    text-decoration: none;
+}
+
+.add-recette-btn:hover {
+    background-color: #e49400;
+}
+
+/* Conteneur du formulaire */
+form {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px auto;
+}
+
+/* Titres */
+form h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Labels */
+label {
+    font-weight: 600;
+    color: #555;
+}
+
+/* Inputs et textarea */
+input[type="text"],
+textarea,
+select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    resize: vertical;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Bouton submit */
+input[type="submit"] {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+input[type="submit"]:hover {
+    background-color: #e49400;
+}
+
+.info-recette {
+    width: 700px;        /* Limite la largeur pour une meilleure lisibilité */
+    margin: 40px auto;       /* Centrage horizontal avec un peu d’espace vertical */
+    padding: 30px 25px;      /* Espacement intérieur confortable */
+    background-color: #fff;  /* Fond blanc pour contraster avec la page */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Ombre légère pour effet de profondeur */
+    border-radius: 10px;     /* Bords arrondis doux */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;             /* Texte sombre pour une bonne lecture */
+    line-height: 1.6;        /* Interligne agréable */
+}
+
+.info-recette h2 {
+    font-size: 2rem;
+    margin-bottom: 0.3em;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.info-recette h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1em;
+    color: orange;
+    font-weight: 600;
+    text-align: center;
+}
+
+.info-recette h4 {
+    font-size: 1.1rem;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+    color: #34495e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-recette p {
+    font-size: 1rem;
+    margin-bottom: 1em;
+    white-space: pre-wrap; /* Pour garder la mise en forme des instructions / ingrédients */
+}
+
+.btn-recette {
+    margin-top: 2em;
+    display: flex;
+    gap: 15px;
+    justify-content: space-evenly;
+}
+
+.btn-recette a {
+    padding: 10px 20px;
+    background-color: orange;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-recette a:hover {
+    background-color: #e49400;
+}

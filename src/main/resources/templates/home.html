@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu d'accueil</title>
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+    <header th:block th:fragment="header">
+        <a th:href="@{/}">Accueil</a>
+        <a th:href="@{/recette/list}">Recette</a>
+        <a>Catégorie</a>
+    </header>
+    <div class="background-opacity">
+        <h1>La meilleure application de recette</h1>
+        <div class="grid-container">
+            <div class="home-grid">
+                <div class="grid-item">
+                    <a th:href="@{/recette/list}">
+                        <img th:src="@{/img/meal-svgrepo-com.svg}" alt="logo">
+                        <h2>Recette</h2>
+                    </a>
+                </div>
+                <div class="grid-item">
+                    <a>
+                        <img th:src="@{/img/notepad-svg.svg}" alt="logo">
+                        <h2>Catégorie</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
