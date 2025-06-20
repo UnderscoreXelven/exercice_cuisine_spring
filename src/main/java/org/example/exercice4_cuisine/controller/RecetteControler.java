@@ -1,10 +1,12 @@
 package org.example.exercice4_cuisine.controller;
 
+import jakarta.validation.Valid;
 import org.example.exercice4_cuisine.model.Recette;
 import org.example.exercice4_cuisine.service.CategorieService;
 import org.example.exercice4_cuisine.service.RecetteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -36,7 +38,10 @@ public class RecetteControler {
     }
 
     @PostMapping("/recette/add")
-    public String recetteAdd(@ModelAttribute("recette") Recette recette, @RequestParam("categorieId") int categorieId) {
+    public String recetteAdd(@Valid @ModelAttribute("recette") Recette recette, @RequestParam("categorieId") int categorieId, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "recetteAdd";
+        }
         recette.setCategorie(categorieService.get(categorieId));
         recetteService.add(recette);
         return "redirect:/recette/list";
@@ -64,17 +69,9 @@ public class RecetteControler {
     }
 
     @GetMapping("/recette/delete/{id}")
-    public String delete(@PathVariable int id) {
+    public String recetteDelete(@PathVariable int id) {
         recetteService.delete(id);
         return "redirect:/recette/list";
-    }
-
-
-
-    @GetMapping("/categorie/list")
-    public String categorieList(Model model) {
-        model.addAttribute("categories", categorieService.getAll());
-        return "categorieMenu";
     }
 
 }

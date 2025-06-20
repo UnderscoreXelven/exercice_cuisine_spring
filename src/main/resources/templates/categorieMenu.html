@@ -20,12 +20,12 @@
         <tr th:each="categorie : ${categories}">
             <td th:text="${categorie.getNom()}"></td>
             <td>
-                <a th:href="@{/recette/{id}(id=${categorie.getId()})}" class="detail-btn">Détails</a>
+                <a th:href="@{/categorie/{id}(id=${categorie.getId()})}" class="detail-btn">Détails</a>
             </td>
 
         </tbody>
     </table>
-    <a th:href="@{/recette/add}" class="add-recette-btn">Ajouter une catégorie</a>
+    <a th:href="@{/categorie/add}" class="add-recette-btn">Ajouter une catégorie</a>
 </div>
 </body>
 </html>

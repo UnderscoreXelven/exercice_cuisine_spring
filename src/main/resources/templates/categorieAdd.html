@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ajouter d'une recette</title>
+    <link rel="stylesheet" href="/style/style.css">
 </head>
 <body>
+<div th:replace="~{home :: header}"></div>
+<div class="background-opacity">
+    <h1>Ajouter une catégorie</h1>
+    <form th:if="${categorie.id} == null" th:action="@{/categorie/add}" method="post">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" th:value="${categorie.nom}" required />
 
+        <label for="description">Instructions :</label>
+        <textarea id="description" name="description" required th:text="${categorie.description}"></textarea>
+
+        <button type="submit" class="add-recette-btn">Ajouter</button>
+    </form>
+
+    <form th:unless="${categorie.id} == null" th:action="@{/categorie/update}" method="post">
+        <input type="hidden" name="id" th:value="${categorie.id}" />
+
+        <label for="nom2">Nom :</label>
+        <input type="text" id="nom2" name="nom" th:value="${categorie.nom}" required />
+
+        <label for="description2">Description :</label>
+        <textarea id="description2" name="description" required th:text="${categorie.description}"></textarea>
+
+        <button type="submit" class="add-recette-btn">Modifier</button>
+    </form>
+
+</div>
 </body>
 </html>
